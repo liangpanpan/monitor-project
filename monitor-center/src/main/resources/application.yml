@@ -1,0 +1,45 @@
+#\u670D\u52A1\u4FE1\u606F
+server:
+  info: guxing
+  port: 8090
+#  servlet:
+#    context-path: /monitor #\u914D\u7F6E\u8BBF\u95EE\u7684\u9879\u76EE\u540D\u79F0
+
+# Spring\u4FE1\u606F
+spring:
+
+  #\u754C\u9762\u6A21\u677F\u4FE1\u606F
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+
+
+  #Redis
+  redis:
+    database: 0
+    timeout: 1000
+    password: liangpan
+    cluster:
+      nodes:
+        - 49.232.17.193:8001
+        - 49.232.17.193:8002
+        - 49.232.17.193:8003
+        - 49.232.17.193:8004
+        - 49.232.17.193:8005
+        - 49.232.17.193:8006
+    lettuce:
+      pool:
+        max-active: 100
+        min-idle: 10
+        max-idle: 50
+        max-wait: 1000
+
+  # \u6570\u636E\u5E93\u914D\u7F6E
+  datasource:
+    url: jdbc:mysql://49.232.17.193:3306/guxingyuan?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    druid:
+      initial-size: 5 #\u8FDE\u63A5\u6C60\u521D\u59CB\u5316\u5927\u5C0F
+      min-idle: 10 #\u6700\u5C0F\u7A7A\u95F2\u8FDE\u63A5\u6570
+      max-active: 20 #\u6700\u5927\u8FDE\u63A5\u6570
