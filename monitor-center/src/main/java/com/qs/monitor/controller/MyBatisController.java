@@ -1,9 +1,9 @@
 package com.qs.monitor.controller;
 
+import com.qs.monitor.common.annotation.ResponseResult;
 import com.qs.monitor.entity.User;
 import com.qs.monitor.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +20,7 @@ import java.util.List;
  * liangpanpan   2020/11/9       create this file
  * </pre>
  */
+@ResponseResult
 @RestController
 @RequestMapping(value = "/mybatis")
 public class MyBatisController {
@@ -27,13 +28,13 @@ public class MyBatisController {
     @Autowired
     private UserService userService;
 
-    @PostMapping(value = "/selectEmp")
+    @RequestMapping(value = "/selectEmp")
     public User selectEmp(@RequestParam Integer id) {
         return userService.selectUser(id);
     }
 
-    @PostMapping(value = "/insertEmp")
-    public List<User> insertEmp(@RequestBody User emp) {
+    @RequestMapping(value = "/insertEmp")
+    public List<User> insertEmp(User emp) {
         int result = userService.insertUser(emp);
         if (result != 1) {
             throw new RuntimeException("插入数据“" + emp.getUserName() + "”失败");
@@ -41,7 +42,7 @@ public class MyBatisController {
         return userService.selectUserByName(emp.getUserName());
     }
 
-    @PostMapping(value = "/updateEmp")
+    @RequestMapping(value = "/updateEmp")
     public User updateEmp(@RequestBody User emp) {
         int result = userService.updateUser(emp);
         if (result != 1) {
@@ -50,7 +51,7 @@ public class MyBatisController {
         return userService.selectUser(emp.getId());
     }
 
-    @PostMapping(value = "/deleteEmp")
+    @RequestMapping(value = "/deleteEmp")
     public Integer deleteEmp(@RequestBody User emp) {
         return userService.deleteUser(emp);
     }

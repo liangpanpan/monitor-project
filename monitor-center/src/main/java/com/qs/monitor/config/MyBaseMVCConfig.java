@@ -1,7 +1,9 @@
 package com.qs.monitor.config;
 
 import com.qs.monitor.interceptor.AuthInterceptor;
+import com.qs.monitor.interceptor.RedisSessionInterceptor;
 import com.qs.monitor.interceptor.ResultDataInterceptor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -24,6 +26,11 @@ import java.util.List;
  */
 @Configuration
 public class MyBaseMVCConfig extends WebMvcConfigurationSupport {
+
+    @Bean
+    public RedisSessionInterceptor getSessionInterceptor() {
+        return new RedisSessionInterceptor();
+    }
 
     /**
      * 对spring mvc的转换器进行处理，设置字符。
@@ -54,6 +61,9 @@ public class MyBaseMVCConfig extends WebMvcConfigurationSupport {
     protected void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new AuthInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(new ResultDataInterceptor()).addPathPatterns("/**");
+
+        registry.addInterceptor(getSessionInterceptor()).addPathPatterns("/api/**").excludePathPatterns("/api" +
+                "/user/login");
 
         super.addInterceptors(registry);
     }

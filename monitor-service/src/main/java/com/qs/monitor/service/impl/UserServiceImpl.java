@@ -30,6 +30,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findUserByAccountAndPassword(String userName, String password) {
+        List<User> userList = userMapper.selectUserByName(userName);
+        User user = null;
+        if (userList != null) {
+            user =
+                    userList.stream().filter(searchUser -> password.equals(searchUser.getPassword())).findAny().orElse(null
+                    );
+        }
+        return user;
+    }
+
+    @Override
     public List<User> selectUserByName(String userName) {
         return userMapper.selectUserByName(userName);
     }

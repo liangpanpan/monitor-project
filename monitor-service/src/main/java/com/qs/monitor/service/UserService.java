@@ -17,6 +17,8 @@ import java.util.List;
 public interface UserService {
     User selectUser(Integer id);
 
+    User findUserByAccountAndPassword(String userName, String password);
+
     List<User> selectUserByName(String userName);
 
     Integer insertUser(User emp);

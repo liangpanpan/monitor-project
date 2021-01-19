@@ -14,13 +14,13 @@
 
     <insert id="insertUser">
         INSERT INTO
-        `guxingyuan`.`User`(`username`)
-        VALUES (#{userName});
+        `guxingyuan`.`User`(`username`, `password`, `address`)
+        VALUES (#{userName}, #{password}, #{address});
     </insert>
 
     <update id="updateUser">
         update User
-        set username = #{userName}
+        set username = #{userName}, password = #{password}, address = #{address}
         where id = #{id}
     </update>
 
