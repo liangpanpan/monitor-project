@@ -15,7 +15,7 @@ import java.util.List;
  * </pre>
  */
 public interface UserService {
-    User selectUser(Integer id);
+    User selectUser(Double id);
 
     User findUserByAccountAndPassword(String userName, String password);
 

@@ -13,16 +13,11 @@
     <name>monitor-center</name>
     <description>监控中心对外Controller层</description>
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
-
     <dependencies>
 
         <dependency>
             <groupId>com.qs</groupId>
             <artifactId>monitor-service</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>

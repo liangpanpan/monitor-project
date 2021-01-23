@@ -45,7 +45,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/getUserInfo")
-    public User get(Integer userId) {
+    public User get(Double userId) {
         User user = userService.selectUser(userId);
         if (user != null) {
             return user;

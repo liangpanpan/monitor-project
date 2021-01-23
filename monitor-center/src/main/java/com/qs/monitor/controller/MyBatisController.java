@@ -29,26 +29,26 @@ public class MyBatisController {
     private UserService userService;
 
     @RequestMapping(value = "/selectEmp")
-    public User selectEmp(@RequestParam Integer id) {
+    public User selectEmp(@RequestParam Double id) {
         return userService.selectUser(id);
     }
 
     @RequestMapping(value = "/insertEmp")
-    public List<User> insertEmp(User emp) {
-        int result = userService.insertUser(emp);
+    public List<User> insertEmp(User user) {
+        int result = userService.insertUser(user);
         if (result != 1) {
-            throw new RuntimeException("插入数据“" + emp.getUserName() + "”失败");
+            throw new RuntimeException("插入数据“" + user.getUsername() + "”失败");
         }
-        return userService.selectUserByName(emp.getUserName());
+        return userService.selectUserByName(user.getUsername());
     }
 
     @RequestMapping(value = "/updateEmp")
-    public User updateEmp(@RequestBody User emp) {
-        int result = userService.updateUser(emp);
+    public User updateEmp(@RequestBody User user) {
+        int result = userService.updateUser(user);
         if (result != 1) {
-            throw new RuntimeException("修改数据id:" + emp.getId() + " userName:" + emp.getUserName() + "失败");
+            throw new RuntimeException("修改数据id:" + user.getId() + " userName:" + user.getUsername() + "失败");
         }
-        return userService.selectUser(emp.getId());
+        return userService.selectUser(user.getId());
     }
 
     @RequestMapping(value = "/deleteEmp")
